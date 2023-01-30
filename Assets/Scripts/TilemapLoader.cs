@@ -12,7 +12,7 @@ public class TilemapLoader : MonoBehaviour
     private float Ypos = 1;
     [SerializeField] private GameObject earthtile;
     public GameObject Origin;
-    public float SPX;
+    private float SPX;
     private float SPY;
     
 
