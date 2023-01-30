@@ -13,4 +13,10 @@ public class SceneProgress : MonoBehaviour
          int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
     }
+
+    public void quitgame()
+    {
+        Application.Quit();
+        Debug.Log("quitting game");
+    }
 }
