@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovementUnder : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 5.0f;
-
+    public float maxVelocity = 5;
     private Rigidbody2D _playerRigidbody;
     private void Start()
     {
@@ -18,7 +18,7 @@ public class PlayerMovementUnder : MonoBehaviour
     private void Update()
     {
         MovePlayer();
-
+        _playerRigidbody.velocity = Vector2.ClampMagnitude(_playerRigidbody.velocity, maxVelocity);
     }
     private void MovePlayer()
     {
