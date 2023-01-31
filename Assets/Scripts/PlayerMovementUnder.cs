@@ -32,6 +32,14 @@ public class PlayerMovementUnder : MonoBehaviour
         {
             badgerG.GetComponent<Animator>().Play("Badger_Idle");
         }
+        if(_playerRigidbody.velocity.x < -0.1)
+        {
+            badger.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        if(_playerRigidbody.velocity.x > 0.1)
+        {
+            badger.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
     private void MovePlayer()
     {
