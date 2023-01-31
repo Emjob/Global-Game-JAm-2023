@@ -7,7 +7,12 @@ public class PlayerMovementTop : MonoBehaviour
     [SerializeField] private float playerSpeed = 5.0f;
     [SerializeField] private float jumpPower = 5.0f;
 
+    public Transform grasshopper;
+    public GameObject grasshopperG;
     public Collider2D groundCheck;
+
+    public bool jumping;
+    public bool falling;
 
     private Rigidbody2D _playerRigidbody;
     private bool isGrounded;
@@ -27,6 +32,38 @@ public class PlayerMovementTop : MonoBehaviour
         {
             Jump();
         }
+
+        if (_playerRigidbody.velocity.y > 0.1)
+        {
+            jumping = true;
+            falling = false;
+            grasshopperG.GetComponent<Animator>().Play("GrassHopperJump");
+        }
+        if (_playerRigidbody.velocity.y < -0.1)
+        {
+            jumping = false;
+            falling = true;
+            grasshopperG.GetComponent<Animator>().Play("GrassHopperFall");
+        }
+        if (_playerRigidbody.velocity.y > -0.1 && _playerRigidbody.velocity.y < 0.1)
+        {
+            jumping = false;
+            falling = false;
+        }
+        if (jumping == false && falling == false)
+        {
+            if(_playerRigidbody.velocity.x > 0.1)
+            {
+                grasshopperG.GetComponent<Animator>().Play("GrassHopperRun");
+                grasshopper.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            if(_playerRigidbody.velocity.x < -0.1)
+            {
+                grasshopperG.GetComponent<Animator>().Play("GrassHopperRun");
+                grasshopper.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+
     }
     private void MovePlayer()
     {
