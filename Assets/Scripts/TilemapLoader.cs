@@ -25,8 +25,8 @@ public class TilemapLoader : MonoBehaviour
         for(int i = 0; i < Xnum; i++)
         {
             
-            GriddyX = (SPX + (Xpos * i)/2);
-            Instantiate(earthtile, new Vector2(GriddyX,0), Quaternion.identity);
+            GriddyX = ((SPX + (Xpos * i)/2));
+            Instantiate(earthtile, new Vector2(GriddyX,SPY), Quaternion.identity);
             for(int j = 0; j < Ynum; j++)
             {
                 GriddyY = (SPY + (Ypos * -j)/2);
