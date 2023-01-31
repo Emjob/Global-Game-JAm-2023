@@ -6,22 +6,30 @@ public class BossLegAI : MonoBehaviour
 {
     public GameObject LeftField;
     public GameObject RightField;
-    private float legSpeed = 3;
+    public Vector2 speed;
+    public float PlayerPos;
+    private float BossPos;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
-    private void onTiggerEnter2D(Collider2D RightField)
+  
+
+
+     void OnTriggerStay2D (Collider2D other)
+     {
+        PlayerPos = other.gameObject.transform.position.x;
+        BossPos = this.gameObject.transform.position.x;
+
+    if(PlayerPos>BossPos)
     {
-        
+        transform.Translate(speed * Time.deltaTime);  
     }
+    else
+    {
+        transform.Translate((speed * Time.deltaTime)*-1);
+    }
+     }
+ 
 }
