@@ -23,11 +23,11 @@ public class TilemapLoader : MonoBehaviour
         SPY = Origin.transform.position.y;
         for(int i = 0; i < Xnum; i++)
         {
-            GriddyX = SPX + (Xpos * i);
+            GriddyX = (SPX + (Xpos * i)/2);
             Instantiate(earthtile, new Vector2(GriddyX,0), Quaternion.identity);
             for(int j = 0; j < Ynum; j++)
             {
-                GriddyY = SPY + (Ypos * -j);
+                GriddyY = (SPY + (Ypos * -j)/2);
                 Instantiate(earthtile, new Vector2(GriddyX,GriddyY), Quaternion.identity);
             
             }

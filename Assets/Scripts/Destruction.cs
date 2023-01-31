@@ -27,7 +27,7 @@ public class Destruction : MonoBehaviour
         {
             Destroy(this.gameObject);
             Instantiate(PoofEffect, new Vector2(PosX,PosY), Quaternion.identity);
-            Debug.Log("ouch");
+           // Debug.Log("ouch");
         }
     }
 }

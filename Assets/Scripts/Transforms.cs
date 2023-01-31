@@ -6,14 +6,18 @@ public class Transforms : MonoBehaviour
 {
    public Vector3 rotato;
    public Vector3 bigness;
-   private Vector3 starties;
-   public Vector3 endies = new Vector3(0,0,0);
+   public Vector2 sped;
+   private Vector2 starties;
+   public Vector2 endies = new Vector2(0,0);
    public float timetaken;
+   public float timereturned;
    private float timepassed;
    [SerializeField] private AnimationCurve curve;
+   [SerializeField] private AnimationCurve reverseCurve;
+   private bool groovin;
    
 
-    void start()
+    void Start()
     {
         starties = transform.position;
     }
@@ -21,24 +25,39 @@ public class Transforms : MonoBehaviour
     
     void Update()
     {
+        transform.Translate(sped * Time.deltaTime);
         transform.Rotate(rotato * Time.deltaTime);
         transform.localScale += bigness;
-        timepassed += Time.deltaTime;
-        float percentcomplete = timepassed / timetaken;
-        transform.position = Vector3.Lerp(starties,endies,curve.Evaluate(percentcomplete));
-       // StartCoroutine(lerpies());
+
+        if(!groovin)
+        {
+            StartCoroutine(lerpies());
+            groovin = true;
+        }    
     }
 
 
-   /* IEnumerator lerpies()
+    IEnumerator lerpies()
     {
-        timepassed += Time.deltaTime;
-        float percentcomplete = timepassed / timetaken;
-        transform.position = Vector3.Lerp(starties,endies,pcurve.Evaluate(percentcomplete));
-        yield return;
-        yield return new WaitForSeconds(timetaken);
-        transform.position = Vector3.Lerp(endies,starties,pcurve.Evaluate(percentcomplete));
-        yield return;
-    }*/
+        timepassed = 0;
+        while (timepassed<timetaken)
+        {
+            
+            timepassed += Time.deltaTime;
+            float percentcomplete = Mathf.Clamp(timepassed / timetaken,0,1);
+            transform.position = Vector3.Lerp(starties,endies,curve.Evaluate(percentcomplete));
+            yield return null;
+        }
+        timepassed = 0;
+        while (timepassed<timetaken)
+        {
+            
+            timepassed += Time.deltaTime;
+            float percentundone = Mathf.Clamp(timepassed / timetaken,0,1);
+            transform.position = Vector3.Lerp(endies,starties,reverseCurve.Evaluate(percentundone));
+            yield return null;
+        }
+        groovin = false;
+    }
 
 }
