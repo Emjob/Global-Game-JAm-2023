@@ -14,6 +14,7 @@ public class TilemapLoader : MonoBehaviour
     public GameObject Origin;
     private float SPX;
     private float SPY;
+
     
 
     
@@ -23,6 +24,7 @@ public class TilemapLoader : MonoBehaviour
         SPY = Origin.transform.position.y;
         for(int i = 0; i < Xnum; i++)
         {
+            
             GriddyX = (SPX + (Xpos * i)/2);
             Instantiate(earthtile, new Vector2(GriddyX,0), Quaternion.identity);
             for(int j = 0; j < Ynum; j++)
