@@ -128,8 +128,8 @@ MonoBehaviour:
   bigness: {x: 0, y: 0, z: 0}
   sped: {x: 0, y: 0}
   endies: {x: -2, y: 3}
-  timetaken: 1
-  timereturned: 1
+  timetaken: 0
+  timereturned: 0
   curve:
     serializedVersion: 2
     m_Curve:
