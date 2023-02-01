@@ -11,7 +11,9 @@ public class Enemy_Movement : MonoBehaviour
     public float distanceToPlayer2;
     public float distanceToPlayer1;
 
-     private Transform targetPlayer;
+    private Transform targetPlayer;
+
+    public float enemyTargetDistance;
 
     public float speed;
 
@@ -29,15 +31,18 @@ public class Enemy_Movement : MonoBehaviour
         distanceToPlayer2 = Vector3.Distance(transform.position, Player2.transform.position);
         distanceToPlayer1 = Vector3.Distance(transform.position, Player1.transform.position);
         Debug.Log(Mathf.Min(distanceToPlayer2, distanceToPlayer1));
-        if(distanceToPlayer2 < distanceToPlayer1)
+        if (distanceToPlayer1 < enemyTargetDistance || distanceToPlayer2 < enemyTargetDistance)
         {
-           targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
-            transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
-        }
-        if (distanceToPlayer1 < distanceToPlayer2)
-        {
-            targetPlayer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Transform>();
-            transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+            if (distanceToPlayer2 < distanceToPlayer1)
+            {
+                targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
+                transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+            }
+            if (distanceToPlayer1 < distanceToPlayer2)
+            {
+                targetPlayer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Transform>();
+                transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+            }
         }
     }
 }
