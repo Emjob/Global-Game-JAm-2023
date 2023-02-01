@@ -33,13 +33,13 @@ public class PlayerMovementTop : MonoBehaviour
             Jump();
         }
 
-        if (_playerRigidbody.velocity.y > 0.1)
+        if (_playerRigidbody.velocity.y > 0.25)
         {
             jumping = true;
             falling = false;
             grasshopperG.GetComponent<Animator>().Play("GrassHopperJump");
         }
-        if (_playerRigidbody.velocity.y < -0.1)
+        if (_playerRigidbody.velocity.y < -0.25 && groundCheck)
         {
             jumping = false;
             falling = true;

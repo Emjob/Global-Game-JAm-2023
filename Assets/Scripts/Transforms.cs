@@ -53,11 +53,11 @@ public class Transforms : MonoBehaviour
         if(returning)
         {
             timepassed = 0;
-            while (timepassed<timetaken)
+            while (timepassed<timereturned)
             {
             
                 timepassed += Time.deltaTime;
-                float percentundone = Mathf.Clamp(timepassed / timetaken,0,1);
+                float percentundone = Mathf.Clamp(timepassed / timereturned,0,1);
                 transform.position = Vector3.Lerp(endies,starties,reverseCurve.Evaluate(percentundone));
                 yield return null;
             }

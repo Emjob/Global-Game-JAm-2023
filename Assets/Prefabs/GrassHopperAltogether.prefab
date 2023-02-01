@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2374027056395047140}
   - component: {fileID: 2374027056395047144}
   - component: {fileID: 2374027056395047151}
+  - component: {fileID: 9148448188425669266}
   m_Layer: 0
   m_Name: GrassHopperAltogether
   m_TagString: Untagged
@@ -117,7 +118,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2374027056395047141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -155,6 +156,7 @@ MonoBehaviour:
   groundCheck: {fileID: 2374027056395047151}
   jumping: 0
   falling: 0
+  isGrounded: 0
 --- !u!61 &2374027056395047151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -168,7 +170,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.47}
+  m_Offset: {x: 0, y: -0.55}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -181,6 +183,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.1}
   m_EdgeRadius: 0
+--- !u!70 &9148448188425669266
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374027056395047141}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.5, y: 1}
+  m_Direction: 1
 --- !u!1001 &2374027056305414892
 PrefabInstance:
   m_ObjectHideFlags: 0
