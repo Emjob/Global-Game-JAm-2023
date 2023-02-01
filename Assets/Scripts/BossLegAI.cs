@@ -45,7 +45,8 @@ public class BossLegAI : MonoBehaviour
             slamming = true;
             endies.x = BossPos;
             starties.x = BossPos;
-            starties.y = 5;
+            starties.y = 8;
+            endies.y = 5;
         }
         if(PlayerPos>BossPos)
         {

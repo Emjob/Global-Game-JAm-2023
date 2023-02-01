@@ -15,6 +15,7 @@ public class Transforms : MonoBehaviour
    [SerializeField] private AnimationCurve curve;
    [SerializeField] private AnimationCurve reverseCurve;
    private bool groovin;
+   public bool returning;
    
 
     void Start()
@@ -48,16 +49,20 @@ public class Transforms : MonoBehaviour
             transform.position = Vector3.Lerp(starties,endies,curve.Evaluate(percentcomplete));
             yield return null;
         }
-        timepassed = 0;
-        while (timepassed<timetaken)
+
+        if(returning)
         {
+            timepassed = 0;
+            while (timepassed<timetaken)
+            {
             
-            timepassed += Time.deltaTime;
-            float percentundone = Mathf.Clamp(timepassed / timetaken,0,1);
-            transform.position = Vector3.Lerp(endies,starties,reverseCurve.Evaluate(percentundone));
-            yield return null;
+                timepassed += Time.deltaTime;
+                float percentundone = Mathf.Clamp(timepassed / timetaken,0,1);
+                transform.position = Vector3.Lerp(endies,starties,reverseCurve.Evaluate(percentundone));
+                yield return null;
+            }
+            groovin = false;
         }
-        groovin = false;
-    }
+    }    
 
 }
