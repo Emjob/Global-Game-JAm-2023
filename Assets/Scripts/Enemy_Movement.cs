@@ -8,8 +8,8 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject Player2;
     public GameObject Player1;
 
-    public float distanceToPlayer2;
-    public float distanceToPlayer1;
+    private float distanceToPlayer2;
+    private float distanceToPlayer1;
 
     private Transform targetPlayer;
 
@@ -20,23 +20,30 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject breakerY;
     public GameObject breakerX;
 
-    public Transform LeftB;
-    public Transform RightB;
-    public Transform UpB;
-    public Transform DownB;
+    public GameObject LeftB;
+    public GameObject RightB;
+    public GameObject UpB;
+    public GameObject DownB;
 
-    public float yVelocity;
-    public float xVelocity;
+    private float yVelocity;
+    private float xVelocity;
 
-    public bool BYAlive;
+    private bool BYAlive;
     public Transform player;
-    public Vector3 heading;
-    public Vector3 pos;
+    private Vector3 heading;
+    private Vector3 pos;
 
-    public float YBuffer;
-    
+    private float YBuffer;
 
- //   public Transform playerDistance;
+    public bool UpDetect;
+    public bool DownDetect;
+    public bool LeftDetect;
+    public bool RightDetect;
+
+    public float SensorScore;
+
+
+    //   public Transform playerDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -53,12 +60,6 @@ public class Enemy_Movement : MonoBehaviour
         yVelocity = GetComponent<Rigidbody2D>().velocity.y;
         xVelocity = GetComponent<Rigidbody2D>().velocity.x;
 
-        
-        
-        
-
-
-
         if (distanceToPlayer1 < enemyTargetDistance || distanceToPlayer2 < enemyTargetDistance)
         {
             if (distanceToPlayer2 < distanceToPlayer1)
@@ -70,6 +71,7 @@ public class Enemy_Movement : MonoBehaviour
                 followPlayer1();
             }
         }
+        
     }
 
     void followPlayer2()
@@ -77,27 +79,52 @@ public class Enemy_Movement : MonoBehaviour
         targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
 
-        //  yVelocity = GetComponent<Rigidbody2D>().velocity.y;
-
         Vector3 pos = player.transform.position;
         Vector3 heading = (player.transform.position - gameObject.transform.position).normalized;
 
-          if (heading.y < YBuffer && BYAlive == false)
+          if (heading.y < YBuffer && BYAlive == false && DownDetect)
           {
-           var breaker = Instantiate(breakerY, DownB.position, DownB.rotation);
+           var breaker = Instantiate(breakerY, DownB.transform.position, DownB.transform.rotation);
             BYAlive = true;
-            StartCoroutine(Wait(0.7f));
+            StartCoroutine(Wait(0.2f));
         //Debug.DrawLine(pos, pos - heading * 10, Color.red, Mathf.Infinity);
         }
 
-        if (yVelocity < 0 && BYAlive == false)
+        if (UpDetect && BYAlive == false && SensorScore >= 2)
         {
             
-        // var  breaker = Instantiate(breakerY, UpB.position, UpB.rotation);
-         //  breaker.transform.parent = gameObject.transform;
-         //   BYAlive = true;
-            StartCoroutine(Wait(0.7f));
+         var  breaker = Instantiate(breakerY, UpB.transform.position, UpB.transform.rotation);
+           breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
           
+        }
+        if (DownDetect && BYAlive == false && SensorScore >= 2)
+        {
+
+            var breaker = Instantiate(breakerY, DownB.transform.position, DownB.transform.rotation);
+            breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
+
+        }
+        if (LeftDetect && BYAlive == false && SensorScore >= 2)
+        {
+
+            var breaker = Instantiate(breakerY, LeftB.transform.position, LeftB.transform.rotation);
+            breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
+
+        }
+        if (RightDetect && BYAlive == false && SensorScore >= 2)
+        {
+
+            var breaker = Instantiate(breakerY, RightB.transform.position, RightB.transform.rotation);
+            breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
+
         }
     }
     private IEnumerator Wait(float delay)
@@ -112,5 +139,6 @@ public class Enemy_Movement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
     }
 
-
+    
+    
 }

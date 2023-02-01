@@ -8,6 +8,8 @@ TagManager:
   - Danger
   - Player1
   - Player2
+  - Sensor
+  - Dig
   layers:
   - Default
   - TransparentFX
