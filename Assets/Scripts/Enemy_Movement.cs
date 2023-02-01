@@ -30,19 +30,32 @@ public class Enemy_Movement : MonoBehaviour
     {
         distanceToPlayer2 = Vector3.Distance(transform.position, Player2.transform.position);
         distanceToPlayer1 = Vector3.Distance(transform.position, Player1.transform.position);
-        Debug.Log(Mathf.Min(distanceToPlayer2, distanceToPlayer1));
+        
         if (distanceToPlayer1 < enemyTargetDistance || distanceToPlayer2 < enemyTargetDistance)
         {
             if (distanceToPlayer2 < distanceToPlayer1)
             {
-                targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
-                transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+                followPlayer2();
             }
             if (distanceToPlayer1 < distanceToPlayer2)
             {
-                targetPlayer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Transform>();
-                transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+                followPlayer1();
             }
         }
+    }
+
+    void followPlayer2()
+    {
+        targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
+        transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+
+        var yVelocity = rigidbody2D.velocity.y;
+        if(yVelocity < 0)
+    }
+
+    void followPlayer1()
+    {
+        targetPlayer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Transform>();
+        transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
     }
 }
