@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class Enemy_Movement : MonoBehaviour
 {
     public GameObject Player2;
@@ -29,6 +29,12 @@ public class Enemy_Movement : MonoBehaviour
     public float xVelocity;
 
     public bool BYAlive;
+    public Transform player;
+    public Vector3 heading;
+    public Vector3 pos;
+
+    public float YBuffer;
+    
 
  //   public Transform playerDistance;
 
@@ -46,6 +52,12 @@ public class Enemy_Movement : MonoBehaviour
 
         yVelocity = GetComponent<Rigidbody2D>().velocity.y;
         xVelocity = GetComponent<Rigidbody2D>().velocity.x;
+
+        
+        
+        
+
+
 
         if (distanceToPlayer1 < enemyTargetDistance || distanceToPlayer2 < enemyTargetDistance)
         {
@@ -65,13 +77,25 @@ public class Enemy_Movement : MonoBehaviour
         targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
 
-       //  yVelocity = GetComponent<Rigidbody2D>().velocity.y;
-        if(yVelocity < 0 && BYAlive == false)
+        //  yVelocity = GetComponent<Rigidbody2D>().velocity.y;
+
+        Vector3 pos = player.transform.position;
+        Vector3 heading = (player.transform.position - gameObject.transform.position).normalized;
+
+          if (heading.y < YBuffer && BYAlive == false)
+          {
+           var breaker = Instantiate(breakerY, DownB.position, DownB.rotation);
+            BYAlive = true;
+            StartCoroutine(Wait(0.7f));
+        //Debug.DrawLine(pos, pos - heading * 10, Color.red, Mathf.Infinity);
+        }
+
+        if (yVelocity < 0 && BYAlive == false)
         {
             
-            var breaker = Instantiate(breakerY, UpB.position, UpB.rotation);
-           breaker.transform.parent = gameObject.transform;
-            BYAlive = true;
+        // var  breaker = Instantiate(breakerY, UpB.position, UpB.rotation);
+         //  breaker.transform.parent = gameObject.transform;
+         //   BYAlive = true;
             StartCoroutine(Wait(0.7f));
           
         }
