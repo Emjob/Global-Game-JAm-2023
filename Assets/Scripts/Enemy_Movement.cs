@@ -49,7 +49,7 @@ public class Enemy_Movement : MonoBehaviour
         targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
 
-        var yVelocity = rigidbody2D.velocity.y;
+        var yVelocity = GetComponent<Rigidbody2D>().velocity.y;
         if(yVelocity < 0)
         {
             
