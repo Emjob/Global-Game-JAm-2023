@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5576831d537d58143bd72b0b34669284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Xnum: 35
+  Xnum: 34
   Ynum: 10
-  earthtile: {fileID: 0}
-  Origin: {fileID: 0}
+  earthtile: {fileID: 1637108999379906252, guid: fd08de55f580fca4fadac90a58b7e732, type: 3}
+  Origin: {fileID: 1761331535935661102, guid: bcc559c64b139384c98b7aab9c35907e, type: 3}
