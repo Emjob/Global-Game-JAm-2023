@@ -10,7 +10,10 @@ public class Camera_Movement : MonoBehaviour
 
     public float cameraSize;
     public float cameraAspect;
-     public float width;
+    float width;
+
+    public bool playerOne;
+    public bool playerTwo;
     
     
 
@@ -26,16 +29,27 @@ public class Camera_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(playerOne && playerTwo)
+        {
+            transform.Translate(width, 0, 0);
+            playerOne = false;
+            playerTwo = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D otherObj)
     {
-        if (otherObj.tag == "Player")
+        if (otherObj.tag == "Player1")
         {
+            playerOne = true;
             
-            transform.Translate(width, 0, 0);
            
+        }
+        if (otherObj.tag == "Player2")
+        {
+            playerTwo = true;
+           
+
         }
     }
 }
