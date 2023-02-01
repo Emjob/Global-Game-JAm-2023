@@ -51,6 +51,9 @@ public class Enemy_Movement : MonoBehaviour
 
         var yVelocity = rigidbody2D.velocity.y;
         if(yVelocity < 0)
+        {
+            
+        }
     }
 
     void followPlayer1()
