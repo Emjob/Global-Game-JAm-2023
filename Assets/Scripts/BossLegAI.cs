@@ -29,6 +29,7 @@ public class BossLegAI : MonoBehaviour
         waiting = false;
         yield return new WaitForSeconds(6);
         waiting = true;
+        
     }
     
      void OnTriggerStay2D (Collider2D other)
@@ -74,6 +75,7 @@ public class BossLegAI : MonoBehaviour
             transform.position = Vector3.Lerp(starties,endies,curve.Evaluate(percentcomplete));
             yield return null;
         }
+        yield return new WaitForSeconds(1);
         timepassed = 0;
         while (timepassed<timereturned)
         {
