@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3115534071943055581}
   m_Layer: 0
   m_Name: BreakerY
-  m_TagString: Untagged
+  m_TagString: breaker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5879742, y: 0.1193652}
+  m_Size: {x: 1.1, y: 0.1193652}
   m_EdgeRadius: 0
 --- !u!50 &3401957532849307529
 Rigidbody2D:
@@ -93,4 +93,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dcc449286eb48438f7faa35bd3341a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 0.5
+  destroyTime: 0.1

@@ -21,9 +21,9 @@ public class Destruction : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D otherObj)
     {
-        if(other.gameObject.tag == "breaker")
+        if(otherObj.tag == "breaker")
         {
             Destroy(this.gameObject);
             Instantiate(PoofEffect, new Vector2(PosX,PosY), Quaternion.identity);
