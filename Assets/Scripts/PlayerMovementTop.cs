@@ -15,7 +15,7 @@ public class PlayerMovementTop : MonoBehaviour
     public bool falling;
 
     private Rigidbody2D _playerRigidbody;
-    private bool isGrounded;
+    public bool isGrounded;
     private void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -75,7 +75,7 @@ public class PlayerMovementTop : MonoBehaviour
         _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, jumpPower);
     }
 
-    private void OnTriggerEnter2D(Collider2D groundCheck)
+    private void OnTriggerStay2D(Collider2D groundCheck)
     {
         isGrounded = true;
     }
