@@ -18,11 +18,6 @@ public class BossLegAI : MonoBehaviour
    [SerializeField] private AnimationCurve curve;
    [SerializeField] private AnimationCurve reverseCurve;
    bool waiting = true;
-
-    void Update()
-    {
-        
-    }
   
     IEnumerator Wait()
     {
