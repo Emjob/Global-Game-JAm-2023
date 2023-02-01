@@ -17,13 +17,19 @@ public class BossLegAI : MonoBehaviour
    private float timepassed;
    [SerializeField] private AnimationCurve curve;
    [SerializeField] private AnimationCurve reverseCurve;
+   bool waiting = true;
 
     void Update()
     {
         
     }
   
-
+    IEnumerator Wait()
+    {
+        waiting = false;
+        yield return new WaitForSeconds(6);
+        waiting = true;
+    }
     
      void OnTriggerStay2D (Collider2D other)
      {
@@ -31,11 +37,15 @@ public class BossLegAI : MonoBehaviour
         BossPos = this.gameObject.transform.position.x;
     if(!slamming)
     {
-        StartCoroutine (Slam());
-        slamming = true;
-        endies[0] = BossPos;
-        starties[0] = BossPos;
-
+        if(waiting)
+        {
+            StartCoroutine(Wait());
+            StartCoroutine (Slam());
+            slamming = true;
+            endies.x = BossPos;
+            starties.x = BossPos;
+            starties.y = 5;
+        }
         if(PlayerPos>BossPos)
         {
             transform.Translate(speed * Time.deltaTime);  
@@ -50,7 +60,8 @@ public class BossLegAI : MonoBehaviour
 
      IEnumerator Slam()
      {
-       yield return new WaitForSeconds(2);
+        
+       yield return new WaitForSeconds(1);
         LeftField.SetActive(false);
         RightField.SetActive(false);
 
@@ -64,17 +75,17 @@ public class BossLegAI : MonoBehaviour
             yield return null;
         }
         timepassed = 0;
-        while (timepassed<timetaken)
+        while (timepassed<timereturned)
         {
             
             timepassed += Time.deltaTime;
-            float percentundone = Mathf.Clamp(timepassed / timetaken,0,1);
+            float percentundone = Mathf.Clamp(timepassed / timereturned,0,1);
             transform.position = Vector3.Lerp(endies,starties,reverseCurve.Evaluate(percentundone));
             yield return null;
         }
 
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         slamming = false;
         LeftField.SetActive(true);
         RightField.SetActive(true);

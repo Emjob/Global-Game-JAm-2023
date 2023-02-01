@@ -439,9 +439,10 @@ GameObject:
   m_Component:
   - component: {fileID: 698838937}
   - component: {fileID: 698838938}
+  - component: {fileID: 698838939}
   m_Layer: 0
   m_Name: Leg
-  m_TagString: Untagged
+  m_TagString: Danger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,6 +514,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &698838939
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698838936}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1017716657
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,23 +989,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftField: {fileID: 1025636506}
   RightField: {fileID: 1375523008}
-  speed: {x: 10, y: 0}
+  speed: {x: 3, y: 0}
   PlayerPos: 0
   endies: {x: 0, y: 0}
-  timetaken: 1
-  timereturned: 4
+  timetaken: 0.5
+  timereturned: 2
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.17059654
+      outSlope: 0.17059654
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.16229703
+      value: 0.12014856
+      inSlope: 2.43782
+      outSlope: 2.43782
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2645634
+      value: 0.6546121
+      inSlope: 7.9700327
+      outSlope: 7.9700327
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17528147
+    - serializedVersion: 3
+      time: 0.26878908
+      value: 0.999166
+      inSlope: 0.21860214
+      outSlope: 0.21860214
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.51037645
+      value: 1.0055699
+      inSlope: -0.012245977
+      outSlope: -0.012245977
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3305595
+      outWeight: 0.30218503
     - serializedVersion: 3
       time: 1
       value: 1
@@ -997,8 +1060,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -1023,7 +1086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383820058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.72, y: 4.87, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
