@@ -16,6 +16,15 @@ public class Transforms : MonoBehaviour
    [SerializeField] private AnimationCurve reverseCurve;
    private bool groovin;
    public bool returning;
+
+   public GameObject Button;
+   public bool pressed;
+
+   public void OnTriggerEnter2D(Collider2D Button)
+   {
+    pressed = true;
+    Debug.Log("you turn me on");
+   }
    
 
     void Start()
@@ -29,12 +38,14 @@ public class Transforms : MonoBehaviour
         transform.Translate(sped * Time.deltaTime);
         transform.Rotate(rotato * Time.deltaTime);
         transform.localScale += bigness;
-
+        if(pressed)
+        {
         if(!groovin)
         {
             StartCoroutine(lerpies());
             groovin = true;
-        }    
+        }   
+        } 
     }
 
 
