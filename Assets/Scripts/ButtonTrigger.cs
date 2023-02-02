@@ -9,19 +9,19 @@ public class ButtonTrigger : MonoBehaviour
     public GameObject Button;
     void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if(ThingThatMoves==null)
+        if( other.tag != "Dig")
         {
-            return;
+            if(ThingThatMoves==null)
+            {
+                return;
+            }
+            else
+            {
+                pressed = true;
+                ThingThatMoves.StartCoroutine(lerpies());
+                Debug.Log("ouch");
+            }
         }
-        else
-        {
-            pressed = true;
-            ThingThatMoves.StartCoroutine(lerpies());
-            ThingThatMoves.groovin = true;
-            Debug.Log("ouch");
-        }
-
 
     }
 
@@ -35,7 +35,7 @@ public class ButtonTrigger : MonoBehaviour
    private float timepassed;
    [SerializeField] private AnimationCurve curve;
    [SerializeField] private AnimationCurve reverseCurve;
-   private bool groovin;
+   
    public bool returning;
    public ButtonTrigger ThingThatMoves;
 
@@ -78,7 +78,7 @@ public class ButtonTrigger : MonoBehaviour
                 ThingThatMoves.transform.position = Vector3.Lerp(endies,starties,reverseCurve.Evaluate(percentundone));
                 yield return null;
             }
-            groovin = false;
+            
         }
         }
     }    
