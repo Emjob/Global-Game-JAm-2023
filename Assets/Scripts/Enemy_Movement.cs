@@ -33,7 +33,8 @@ public class Enemy_Movement : MonoBehaviour
     private Vector3 heading;
     private Vector3 pos;
 
-    private float YBuffer;
+    public float YBuffer;
+    public float surface;
 
     public bool UpDetect;
     public bool DownDetect;
@@ -57,8 +58,7 @@ public class Enemy_Movement : MonoBehaviour
         distanceToPlayer2 = Vector3.Distance(transform.position, Player2.transform.position);
         distanceToPlayer1 = Vector3.Distance(transform.position, Player1.transform.position);
 
-        yVelocity = GetComponent<Rigidbody2D>().velocity.y;
-        xVelocity = GetComponent<Rigidbody2D>().velocity.x;
+        
 
         if (distanceToPlayer1 < enemyTargetDistance || distanceToPlayer2 < enemyTargetDistance)
         {
@@ -71,6 +71,13 @@ public class Enemy_Movement : MonoBehaviour
                 followPlayer1();
             }
         }
+        if(gameObject.transform.position.y > surface)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 1f;
+        } else if(gameObject.transform.position.y < surface)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        }
         
     }
 
@@ -82,48 +89,44 @@ public class Enemy_Movement : MonoBehaviour
         Vector3 pos = player.transform.position;
         Vector3 heading = (player.transform.position - gameObject.transform.position).normalized;
 
-          if (heading.y < YBuffer && BYAlive == false && DownDetect)
-          {
-           var breaker = Instantiate(breakerY, DownB.transform.position, DownB.transform.rotation);
-            BYAlive = true;
-            StartCoroutine(Wait(0.2f));
+        
         //Debug.DrawLine(pos, pos - heading * 10, Color.red, Mathf.Infinity);
-        }
+ 
 
-        if (UpDetect && BYAlive == false && SensorScore >= 2)
+        if (UpDetect && BYAlive == false && heading.y > YBuffer)
         {
             
          var  breaker = Instantiate(breakerY, UpB.transform.position, UpB.transform.rotation);
            breaker.transform.parent = gameObject.transform;
-            BYAlive = true;
-            StartCoroutine(Wait(0.2f));
+          //  BYAlive = true;
+          //  StartCoroutine(Wait(0.2f));
           
         }
-        if (DownDetect && BYAlive == false && SensorScore >= 2)
+        if (DownDetect && BYAlive == false  && heading.y < YBuffer)
         {
 
             var breaker = Instantiate(breakerY, DownB.transform.position, DownB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
-            BYAlive = true;
-            StartCoroutine(Wait(0.2f));
+          //  BYAlive = true;
+          //  StartCoroutine(Wait(0.2f));
 
         }
-        if (LeftDetect && BYAlive == false && SensorScore >= 2)
+        if (LeftDetect && BYAlive == false )
         {
 
             var breaker = Instantiate(breakerY, LeftB.transform.position, LeftB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
-            BYAlive = true;
-            StartCoroutine(Wait(0.2f));
+          //  BYAlive = true;
+           // StartCoroutine(Wait(0.2f));
 
         }
-        if (RightDetect && BYAlive == false && SensorScore >= 2)
+        if (RightDetect && BYAlive == false )
         {
 
             var breaker = Instantiate(breakerY, RightB.transform.position, RightB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
-            BYAlive = true;
-            StartCoroutine(Wait(0.2f));
+           // BYAlive = true;
+          //  StartCoroutine(Wait(0.2f));
 
         }
     }
@@ -137,6 +140,37 @@ public class Enemy_Movement : MonoBehaviour
     {
         targetPlayer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Transform>();
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
+
+        Vector3 pos = player.transform.position;
+        Vector3 heading = (player.transform.position - gameObject.transform.position).normalized;
+
+        if (UpDetect && BYAlive == false && heading.y > YBuffer)
+        {
+
+            var breaker = Instantiate(breakerY, UpB.transform.position, UpB.transform.rotation);
+            breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
+
+        }
+        if (LeftDetect && BYAlive == false)
+        {
+
+            var breaker = Instantiate(breakerY, LeftB.transform.position, LeftB.transform.rotation);
+            breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
+
+        }
+        if (RightDetect && BYAlive == false)
+        {
+
+            var breaker = Instantiate(breakerY, RightB.transform.position, RightB.transform.rotation);
+            breaker.transform.parent = gameObject.transform;
+            BYAlive = true;
+            StartCoroutine(Wait(0.2f));
+
+        }
     }
 
     
