@@ -42,7 +42,7 @@ public class CutScenes : MonoBehaviour
     }
     IEnumerator SceneCut()
    {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
                 if(Alpha<=0)
         {
             
@@ -53,7 +53,7 @@ public class CutScenes : MonoBehaviour
        
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
         Debug.Log("moving on");
