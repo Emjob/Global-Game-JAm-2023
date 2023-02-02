@@ -11,8 +11,6 @@ public class PlayerMovementTop : MonoBehaviour
     public GameObject grasshopperG;
     public Collider2D groundCheck;
 
-    public AudioSource jump;
-
     public bool jumping;
     public bool falling;
 
@@ -39,14 +37,12 @@ public class PlayerMovementTop : MonoBehaviour
         {
             jumping = true;
             falling = false;
-            jump.enabled = true;
             grasshopperG.GetComponent<Animator>().Play("GrassHopperJump");
         }
         if (_playerRigidbody.velocity.y < -0.25 && groundCheck == true)
         {
             jumping = false;
             falling = true;
-            jump.enabled = false;
             grasshopperG.GetComponent<Animator>().Play("GrassHopperFall");
         }
         if (_playerRigidbody.velocity.y > -0.1 && _playerRigidbody.velocity.y < 0.1)
