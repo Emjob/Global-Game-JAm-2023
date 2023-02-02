@@ -47,9 +47,9 @@ public class ButtonTrigger : MonoBehaviour
     
     void Update()
     {
-        ThingThatMoves.transform.Translate(sped * Time.deltaTime);
-        ThingThatMoves.transform.Rotate(rotato * Time.deltaTime);
-        ThingThatMoves.transform.localScale += bigness;
+        //ThingThatMoves.transform.Translate(sped * Time.deltaTime);
+        //ThingThatMoves.transform.Rotate(rotato * Time.deltaTime);
+        //ThingThatMoves.transform.localScale += bigness;
     }
 
 
