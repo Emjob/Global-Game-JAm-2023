@@ -12,6 +12,7 @@ public class Enemy_Movement : MonoBehaviour
     private float distanceToPlayer1;
 
     private Transform targetPlayer;
+    public Collider2D enemyCollider;
 
     public float enemyTargetDistance;
 
@@ -24,6 +25,7 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject RightB;
     public GameObject UpB;
     public GameObject DownB;
+    
 
     private float yVelocity;
     private float xVelocity;
@@ -43,13 +45,16 @@ public class Enemy_Movement : MonoBehaviour
 
     public float SensorScore;
 
+    public bool goDown;
+
 
     //   public Transform playerDistance;
 
     // Start is called before the first frame update
     void Start()
     {
-      //  playerDistance = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
+        //  playerDistance = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
+        
     }
 
     // Update is called once per frame
@@ -81,16 +86,19 @@ public class Enemy_Movement : MonoBehaviour
         
     }
 
+   
+
     void followPlayer2()
     {
-        targetPlayer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Transform>();
+        targetPlayer = GameObject.FindGameObjectWithTag("breaker").GetComponent<Transform>();
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
 
         Vector3 pos = player.transform.position;
         Vector3 heading = (player.transform.position - gameObject.transform.position).normalized;
 
-        
+
         //Debug.DrawLine(pos, pos - heading * 10, Color.red, Mathf.Infinity);
+      goDown = true;
  
 
         if (UpDetect && BYAlive == false && heading.y > YBuffer)
@@ -114,7 +122,7 @@ public class Enemy_Movement : MonoBehaviour
         if (LeftDetect && BYAlive == false )
         {
 
-            var breaker = Instantiate(breakerY, LeftB.transform.position, LeftB.transform.rotation);
+            var breaker = Instantiate(breakerX, LeftB.transform.position, LeftB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
           //  BYAlive = true;
            // StartCoroutine(Wait(0.2f));
@@ -123,7 +131,7 @@ public class Enemy_Movement : MonoBehaviour
         if (RightDetect && BYAlive == false )
         {
 
-            var breaker = Instantiate(breakerY, RightB.transform.position, RightB.transform.rotation);
+            var breaker = Instantiate(breakerX, RightB.transform.position, RightB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
            // BYAlive = true;
           //  StartCoroutine(Wait(0.2f));
@@ -138,11 +146,13 @@ public class Enemy_Movement : MonoBehaviour
 
     void followPlayer1()
     {
-        targetPlayer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Transform>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
 
         Vector3 pos = player.transform.position;
         Vector3 heading = (player.transform.position - gameObject.transform.position).normalized;
+
+        goDown = false;
 
         if (UpDetect && BYAlive == false && heading.y > YBuffer)
         {
@@ -156,7 +166,7 @@ public class Enemy_Movement : MonoBehaviour
         if (LeftDetect && BYAlive == false)
         {
 
-            var breaker = Instantiate(breakerY, LeftB.transform.position, LeftB.transform.rotation);
+            var breaker = Instantiate(breakerX, LeftB.transform.position, LeftB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
             BYAlive = true;
             StartCoroutine(Wait(0.2f));
@@ -165,7 +175,7 @@ public class Enemy_Movement : MonoBehaviour
         if (RightDetect && BYAlive == false)
         {
 
-            var breaker = Instantiate(breakerY, RightB.transform.position, RightB.transform.rotation);
+            var breaker = Instantiate(breakerX, RightB.transform.position, RightB.transform.rotation);
             breaker.transform.parent = gameObject.transform;
             BYAlive = true;
             StartCoroutine(Wait(0.2f));
