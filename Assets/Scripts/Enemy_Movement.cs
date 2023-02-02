@@ -30,7 +30,7 @@ public class Enemy_Movement : MonoBehaviour
     private float yVelocity;
     private float xVelocity;
 
-    private bool BYAlive;
+    public bool BYAlive;
     public Transform player;
     private Vector3 heading;
     private Vector3 pos;
@@ -101,7 +101,7 @@ public class Enemy_Movement : MonoBehaviour
       goDown = true;
  
 
-        if (UpDetect && BYAlive == false && heading.y > YBuffer)
+        if (UpDetect && BYAlive == false)
         {
             
          var  breaker = Instantiate(breakerY, UpB.transform.position, UpB.transform.rotation);
@@ -110,7 +110,7 @@ public class Enemy_Movement : MonoBehaviour
           //  StartCoroutine(Wait(0.2f));
           
         }
-        if (DownDetect && BYAlive == false  && heading.y < YBuffer)
+        if (DownDetect && BYAlive == false  )
         {
 
             var breaker = Instantiate(breakerY, DownB.transform.position, DownB.transform.rotation);
