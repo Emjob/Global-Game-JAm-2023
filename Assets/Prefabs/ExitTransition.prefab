@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 9063858822009441474}
   - component: {fileID: 9063858822009441472}
   - component: {fileID: 9063858822009441475}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Transition_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9063858822009441474
 Transform:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9063858822471152359}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ExitTransition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
