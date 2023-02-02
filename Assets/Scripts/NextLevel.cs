@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
+    public GameObject endScene;
     public int PlayerCount;
     // Start is called before the first frame update
     void Start()
@@ -25,9 +26,9 @@ public class NextLevel : MonoBehaviour
             PlayerCount ++;
             if(PlayerCount == 3)
             {
-            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            SceneManager.LoadScene(nextSceneIndex);
-            Debug.Log("yay");
+                endScene.SetActive(true);
+                StartCoroutine(WaitToLeave());
+
             }
         }
     }
@@ -37,5 +38,12 @@ public class NextLevel : MonoBehaviour
         {
             PlayerCount --;
         }
+        }
+        IEnumerator WaitToLeave()
+        {
+            yield return new WaitForSeconds(1);
+                        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            SceneManager.LoadScene(nextSceneIndex);
+
         }
 }
