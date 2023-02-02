@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 1027915797}
   - component: {fileID: 1027915796}
   m_Layer: 0
-  m_Name: thumbnail_7LevelsTileSheet_3
+  m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,7 +509,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 1022613057, guid: e0b4c69a3ca3b53479c907c5fe436ffd, type: 3}
+  m_Sprite: {fileID: 1711984320, guid: e0b4c69a3ca3b53479c907c5fe436ffd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -734,7 +734,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -60
-  m_Sprite: {fileID: 2049344190, guid: e0b4c69a3ca3b53479c907c5fe436ffd, type: 3}
+  m_Sprite: {fileID: 677631349, guid: e0b4c69a3ca3b53479c907c5fe436ffd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

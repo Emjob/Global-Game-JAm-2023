@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 610775441}
   - component: {fileID: 610775440}
   m_Layer: 0
-  m_Name: thumbnail_7LevelsTileSheet_1
+  m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
